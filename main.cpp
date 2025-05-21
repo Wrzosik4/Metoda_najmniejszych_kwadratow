@@ -101,8 +101,15 @@ double evaluate_polynomial(const std::vector<double>& coeffs, double x_val) {
 
 int main() {
     int n = 2;
-    std::vector<double> x = {1, 2, 3, 4};
-    std::vector<double> y = {6, 19, 40, 69};
+
+    // Punkt x = -1, -0.5, 0, 0.5, 1
+    std::vector<double> x = {-1, -0.5, 0, 0.5, 1};
+    std::vector<double> y;
+
+    // Oblicz f(x) = sqrt(5x^3 + x + 10)
+    for (double xi : x) {
+        y.push_back(std::sqrt(5 * std::pow(xi, 3) + xi + 10));
+    }
 
     // Obliczenia potęg i sum
     std::vector<std::vector<double>> results = x_powers(x, y);
@@ -113,7 +120,7 @@ int main() {
         std::cout << labels[row] << ": ";
         double sum = 0.0;
         for (double val : results[row]) {
-            std::cout << std::setw(6) << val << " ";
+            std::cout << std::setw(8) << val << " ";
             sum += val;
         }
         std::cout << " | Suma: " << sum << "\n";
@@ -153,12 +160,10 @@ int main() {
     std::cout << "\n";
 
     // Obliczenie W(x) dla podanej wartości x
-    double x_val;
-    std::cout << "\nPodaj wartość x do obliczenia W(x): ";
-    std::cin >> x_val;
-
+    double x_val = 0.4;
     double result = evaluate_polynomial(coeffs, x_val);
-    std::cout << "W(" << x_val << ") = " << result << "\n";
+    std::cout << "\nW(" << x_val << ") = " << result << "\n";
 
     return 0;
 }
+
